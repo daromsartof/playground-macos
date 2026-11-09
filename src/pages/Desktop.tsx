@@ -1,6 +1,7 @@
 import React from "react";
 import { apps, wallpapers } from "~/configs";
 import { minMarginY } from "~/utils";
+import type { LauncherItem } from "~/utils/launcher";
 import type { MacActions } from "~/types";
 
 interface DesktopState {
@@ -17,10 +18,7 @@ interface DesktopState {
     [key: string]: boolean;
   };
   maxZ: number;
-  showLaunchpad: boolean;
-  currentTitle: string;
-  hideDockAndTopbar: boolean;
-  spotlight: boolean;
+  krunner: boolean;
 }
 
 export default function Desktop(props: MacActions) {
@@ -30,19 +28,11 @@ export default function Desktop(props: MacActions) {
     maxApps: {},
     minApps: {},
     maxZ: 2,
-    showLaunchpad: false,
-    currentTitle: "Finder",
-    hideDockAndTopbar: false,
-    spotlight: false
+    krunner: false
   } as DesktopState);
 
-  const [spotlightBtnRef, setSpotlightBtnRef] =
-    useState<React.RefObject<HTMLDivElement> | null>(null);
-
-  const { dark, brightness } = useStore((state) => ({
-    dark: state.dark,
-    brightness: state.brightness
-  }));
+  const brightness = useStore((state) => state.brightness);
+  const dark = useStore((state) => state.dark);
 
   const getAppsData = (): void => {
     let showApps = {},
@@ -76,21 +66,20 @@ export default function Desktop(props: MacActions) {
     getAppsData();
   }, []);
 
-  const toggleLaunchpad = (target: boolean): void => {
-    const r = document.querySelector(`#launchpad`) as HTMLElement;
-    if (target) {
-      r.style.transform = "scale(1)";
-      r.style.transition = "ease-in 0.2s";
-    } else {
-      r.style.transform = "scale(1.1)";
-      r.style.transition = "ease-out 0.2s";
-    }
+  // KRunner shortcut: Alt+Space or Alt+F2, like on KDE Plasma
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.altKey && (e.code === "Space" || e.key === "F2")) {
+        e.preventDefault();
+        setState((s) => ({ ...s, krunner: !s.krunner }));
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
-    setState({ ...state, showLaunchpad: target });
-  };
-
-  const toggleSpotlight = (): void => {
-    setState({ ...state, spotlight: !state.spotlight });
+  const closeKRunner = (): void => {
+    setState((s) => ({ ...s, krunner: false }));
   };
 
   const setWindowPosition = (id: string): void => {
@@ -103,7 +92,6 @@ export default function Desktop(props: MacActions) {
     );
     r.style.setProperty(
       "--window-transform-y",
-      // "- minMarginY" because of the boundary for windows
       (rect.y - minMarginY).toFixed(1).toString() + "px"
     );
   };
@@ -114,8 +102,7 @@ export default function Desktop(props: MacActions) {
     maxApps[id] = target;
     setState({
       ...state,
-      maxApps: maxApps,
-      hideDockAndTopbar: target
+      maxApps: maxApps
     });
   };
 
@@ -132,32 +119,31 @@ export default function Desktop(props: MacActions) {
   const minimizeApp = (id: string): void => {
     setWindowPosition(id);
 
-    // get the corrosponding dock icon's position
+    // get the corresponding task manager icon's position
     let r = document.querySelector(`#dock-${id}`) as HTMLElement;
-    const dockAppRect = r.getBoundingClientRect();
+    const taskRect = r.getBoundingClientRect();
 
     r = document.querySelector(`#window-${id}`) as HTMLElement;
-    // const appRect = r.getBoundingClientRect();
     const posY = window.innerHeight - r.offsetHeight / 2 - minMarginY;
     // "+ window.innerWidth" because of the boundary for windows
-    const posX = window.innerWidth + dockAppRect.x - r.offsetWidth / 2 + 25;
+    const posX = window.innerWidth + taskRect.x - r.offsetWidth / 2 + 22;
 
-    // translate the window to that position
+    // shrink the window into its task manager entry
     r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`;
     r.style.transition = "ease-out 0.3s";
 
-    // add it to the minimized app list
     setAppMin(id, true);
   };
 
   const closeApp = (id: string): void => {
-    setAppMax(id, false);
+    const maxApps = state.maxApps;
+    maxApps[id] = false;
     const showApps = state.showApps;
     showApps[id] = false;
     setState({
       ...state,
-      showApps: showApps,
-      hideDockAndTopbar: false
+      maxApps,
+      showApps
     });
   };
 
@@ -171,20 +157,11 @@ export default function Desktop(props: MacActions) {
     const maxZ = state.maxZ + 1;
     appsZ[id] = maxZ;
 
-    // get the title of the currently opened app
-    const currentApp = apps.find((app) => {
-      return app.id === id;
-    });
-    if (currentApp === undefined) {
-      throw new TypeError(`App ${id} is undefined.`);
-    }
-
     setState({
       ...state,
       showApps: showApps,
       appsZ: appsZ,
-      maxZ: maxZ,
-      currentTitle: currentApp.title
+      maxZ: maxZ
     });
 
     const minApps = state.minApps;
@@ -202,12 +179,39 @@ export default function Desktop(props: MacActions) {
     }
   };
 
+  // "Peek at Desktop": minimize every visible window
+  const showDesktop = (): void => {
+    apps.forEach((app) => {
+      if (
+        app.desktop &&
+        state.showApps[app.id] &&
+        !state.minApps[app.id] &&
+        !state.maxApps[app.id]
+      )
+        minimizeApp(app.id);
+    });
+  };
+
+  const runItem = (item: LauncherItem): void => {
+    if (item.kind === "app") openApp(item.target);
+    else window.open(item.target, "_blank", "noopener,noreferrer");
+  };
+
+  // the focused window is the visible one with the highest z-index
+  const activeId =
+    apps
+      .filter((app) => app.desktop && state.showApps[app.id] && !state.minApps[app.id])
+      .sort((a, b) => (state.appsZ[b.id] || 0) - (state.appsZ[a.id] || 0))[0]?.id || null;
+
+  const anyMax = apps.some((app) => state.showApps[app.id] && state.maxApps[app.id]);
+
   const renderAppWindows = () => {
     return apps.map((app) => {
       if (app.desktop && state.showApps[app.id]) {
         const props = {
           id: app.id,
           title: app.title,
+          img: app.img,
           width: app.width,
           height: app.height,
           minWidth: app.minWidth,
@@ -218,6 +222,7 @@ export default function Desktop(props: MacActions) {
           z: state.appsZ[app.id],
           max: state.maxApps[app.id],
           min: state.minApps[app.id],
+          active: activeId === app.id,
           close: closeApp,
           setMax: setAppMax,
           setMin: minimizeApp,
@@ -243,43 +248,29 @@ export default function Desktop(props: MacActions) {
         filter: `brightness( ${(brightness as number) * 0.7 + 50}% )`
       }}
     >
-      {/* Top Menu Bar */}
-      <TopBar
-        title={state.currentTitle}
-        setLogin={props.setLogin}
-        shutMac={props.shutMac}
-        sleepMac={props.sleepMac}
-        restartMac={props.restartMac}
-        toggleSpotlight={toggleSpotlight}
-        hide={state.hideDockAndTopbar}
-        setSpotlightBtnRef={setSpotlightBtnRef}
-      />
-
       {/* Desktop Apps */}
       <div className="window-bound z-10 absolute" style={{ top: minMarginY }}>
         {renderAppWindows()}
       </div>
 
-      {/* Spotlight */}
-      {state.spotlight && (
-        <Spotlight
-          openApp={openApp}
-          toggleLaunchpad={toggleLaunchpad}
-          toggleSpotlight={toggleSpotlight}
-          btnRef={spotlightBtnRef as React.RefObject<HTMLDivElement>}
-        />
-      )}
+      {/* KRunner (Alt+Space) */}
+      {state.krunner && <KRunner close={closeKRunner} runItem={runItem} />}
 
-      {/* Launchpad */}
-      <Launchpad show={state.showLaunchpad} toggleLaunchpad={toggleLaunchpad} />
-
-      {/* Dock */}
-      <Dock
-        open={openApp}
+      {/* Plasma panel */}
+      <Panel
+        setLogin={props.setLogin}
+        shutMac={props.shutMac}
+        sleepMac={props.sleepMac}
+        restartMac={props.restartMac}
         showApps={state.showApps}
-        showLaunchpad={state.showLaunchpad}
-        toggleLaunchpad={toggleLaunchpad}
-        hide={state.hideDockAndTopbar}
+        minApps={state.minApps}
+        maxApps={state.maxApps}
+        activeId={activeId}
+        floating={!anyMax}
+        openApp={openApp}
+        minimizeApp={minimizeApp}
+        runItem={runItem}
+        showDesktop={showDesktop}
       />
     </div>
   );

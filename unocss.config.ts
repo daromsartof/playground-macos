@@ -31,6 +31,25 @@ const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
 };
 
 export default defineConfig({
+  theme: {
+    colors: {
+      // Kali Linux inspired palette (Kali-Dark theme)
+      kali: {
+        blue: { DEFAULT: "#367bf0", light: "#5a95f5" },
+        base: "#0b0f19",
+        panel: "#14161c",
+        card: "#1b1e26",
+        field: "#0f1116",
+        line: "#2d323e",
+        text: "#e6e8ee",
+        muted: "#8b93a3"
+      }
+    },
+    fontFamily: {
+      kali: '"Cantarell", "Noto Sans", Ubuntu, "Segoe UI", system-ui, sans-serif',
+      "kali-mono": '"Fira Code", "JetBrains Mono", "DejaVu Sans Mono", Menlo, monospace'
+    }
+  },
   shortcuts: [
     ["flex-center", "flex items-center justify-center"],
     ["hstack", "flex items-center"],
@@ -57,7 +76,26 @@ export default defineConfig({
     ],
     ["cc-text", "text-xs text-c-500"],
     ["cc-grid", "bg-c-200/80 rounded-xl cc-grid-shadow backdrop-blur-2xl"],
-    ["battery-level", "absolute rounded-[1px] h-2 top-1/2 -mt-1 ml-0.5 left-0"]
+    ["battery-level", "absolute rounded-[1px] h-2 top-1/2 -mt-1 ml-0.5 left-0"],
+    // KDE Plasma / KWin (Kali flavour)
+    [
+      "kwin-btn",
+      "flex-center size-6 rounded-full text-kali-text/80 hover:(bg-white/15 text-white) disabled:(opacity-30 pointer-events-none) no-outline focus-visible:ring-1 focus-visible:ring-kali-blue"
+    ],
+    ["kwin-close", "hover:(bg-[#e5484d] text-white)"],
+    [
+      "tray-btn",
+      "flex-center h-full px-1.5 rounded-md text-kali-text hover:bg-white/10 no-outline focus-visible:ring-1 focus-visible:ring-kali-blue"
+    ],
+    ["tray-icon-btn", "flex-center size-7 rounded hover:bg-white/10"],
+    [
+      "task-btn",
+      "flex-center h-full w-11 rounded-md hover:bg-white/8 no-outline focus-visible:ring-1 focus-visible:ring-kali-blue"
+    ],
+    [
+      "task-tooltip",
+      "pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+10px)] whitespace-nowrap rounded-md px-2.5 py-1 text-xs bg-kali-card border border-white/10 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity delay-300"
+    ]
   ],
   rules: [["cc-grid-shadow", { "box-shadow": "0px 1px 5px 0px rgba(0, 0, 0, 0.3)" }]],
   presets: [

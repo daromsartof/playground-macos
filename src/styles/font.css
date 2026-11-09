@@ -27,13 +27,13 @@
 }
 
 .font-avenir {
-  font-family: "Avenir Next LT Pro", "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
+  font-family: "Cantarell", "Noto Sans", Ubuntu, "Segoe UI", system-ui, sans-serif;
 }
 
 .font-terminal {
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-family: "Fira Code", "JetBrains Mono", "DejaVu Sans Mono", Menlo, monospace;
 }
 
 body:not(pre) {
-  font-family: "Helvetica Neue", SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", sans-serif;
+  font-family: "Cantarell", "Noto Sans", Ubuntu, "Segoe UI", system-ui, sans-serif;
 }

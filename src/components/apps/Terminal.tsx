@@ -1,5 +1,5 @@
 import React from "react";
-import { terminal } from "~/configs";
+import { terminal, user } from "~/configs";
 import type { TerminalData } from "~/types";
 
 const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789落霞与孤鹜齐飞秋水共长天一色";
@@ -132,6 +132,11 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     else return this.curDirPath[this.curDirPath.length - 1];
   };
 
+  getCurPath = () => {
+    if (this.curDirPath.length === 0) return "~";
+    else return `~/${this.curDirPath.join("/")}`;
+  };
+
   getCurChildren = () => {
     let children = terminal as any;
     for (const name of this.curDirPath) {
@@ -180,7 +185,9 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       result.push(
         <span
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
-          className={`${item.type === "file" ? "text-white" : "text-purple-300"}`}
+          className={`${
+            item.type === "file" ? "text-white" : "text-[#57c7ff] font-bold"
+          }`}
         >
           {item.title}
         </span>
@@ -218,31 +225,33 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span text-red-400>cat {"<file>"}</span> - See the content of {"<file>"}
+          <span className="text-[#5af78e]">cat {"<file>"}</span> - See the content of{" "}
+          {"<file>"}
         </li>
         <li>
-          <span text-red-400>cd {"<dir>"}</span> - Move into
+          <span className="text-[#5af78e]">cd {"<dir>"}</span> - Move into
           {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
           root
         </li>
         <li>
-          <span text-red-400>ls</span> - See files and directories in the current
-          directory
+          <span className="text-[#5af78e]">ls</span> - See files and directories in the
+          current directory
         </li>
         <li>
-          <span text-red-400>clear</span> - Clear the screen
+          <span className="text-[#5af78e]">clear</span> - Clear the screen
         </li>
         <li>
-          <span text-red-400>help</span> - Display this help menu
+          <span className="text-[#5af78e]">help</span> - Display this help menu
         </li>
         <li>
-          <span text-red-400>rm -rf /</span> - :)
+          <span className="text-[#5af78e]">rm -rf /</span> - :)
         </li>
         <li>
-          press <span text-red-400>up arrow / down arrow</span> - Select history commands
+          press <span className="text-[#5af78e]">up arrow / down arrow</span> - Select
+          history commands
         </li>
         <li>
-          press <span text-red-400>tab</span> - Auto complete
+          press <span className="text-[#5af78e]">tab</span> - Auto complete
         </li>
       </ul>
     );
@@ -297,7 +306,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       } else {
         this.generateResultRow(
           this.curInputTimes,
-          <span>{`zsh: command not found: ${cmd}`}</span>
+          <span className="text-[#ff5c57]">{`zsh: command not found: ${cmd}`}</span>
         );
       }
 
@@ -337,21 +346,29 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     input.focus();
   };
 
+  // Kali's default zsh prompt: ┌──(romeo㉿kali)-[~]
+  //                            └─$
   generateInputRow = (id: number) => {
     const newRow = (
-      <div key={`terminal-input-row-${id}`} flex>
-        <div className="w-max hstack space-x-1.5">
-          <span text-yellow-200>
-            romeo@macbook-pro <span text-green-300>{this.getCurDirName()}</span>
+      <div key={`terminal-input-row-${id}`} className="leading-5">
+        <div className="hstack flex-wrap">
+          <span className="text-[#5af78e] font-bold">┌──(</span>
+          <span className="text-[#57c7ff] font-bold">
+            {user.username}㉿{user.hostname}
           </span>
-          <span text-red-400>{">"}</span>
+          <span className="text-[#5af78e] font-bold">)-[</span>
+          <span className="text-white font-bold">{this.getCurPath()}</span>
+          <span className="text-[#5af78e] font-bold">]</span>
         </div>
-        <input
-          id={`terminal-input-${id}`}
-          className="flex-1 px-1 text-white outline-none bg-transparent"
-          onKeyDown={this.keyPress}
-          autoFocus={true}
-        />
+        <div className="hstack">
+          <span className="text-[#5af78e] font-bold mr-1.5">└─$</span>
+          <input
+            id={`terminal-input-${id}`}
+            className="flex-1 min-w-0 text-white outline-none bg-transparent"
+            onKeyDown={this.keyPress}
+            autoFocus={true}
+          />
+        </div>
       </div>
     );
     this.addRow(newRow);
@@ -369,18 +386,23 @@ export default class Terminal extends React.Component<{}, TerminalState> {
   render() {
     return (
       <div
-        className="terminal font-terminal font-normal relative h-full bg-gray-800/90 overflow-y-scroll"
+        className="terminal font-terminal font-normal relative h-full bg-[#0c0f16]/95 overflow-y-scroll"
         text="white sm"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
         {this.state.rmrf && (
           <HowDare setRMRF={(value: boolean) => this.setState({ rmrf: value })} />
         )}
-        <div p="y-2 x-1.5">
-          <span className="text-green-300">ヽ(ˋ▽ˊ)ノ</span>: Hey, you found the terminal!
-          Type `help` to get started.
+        <div className="px-2 pt-2 text-kali-muted leading-5">
+          <div>
+            Welcome to{" "}
+            <span className="text-kali-blue-light font-bold">Kali GNU/Linux</span> Rolling
+          </div>
+          <div className="mt-1">
+            Type <span className="text-[#5af78e]">help</span> to list available commands.
+          </div>
         </div>
-        <div id="terminal-content" p="x-1.5 b-2">
+        <div id="terminal-content" p="x-2 b-2">
           {this.state.content}
         </div>
       </div>

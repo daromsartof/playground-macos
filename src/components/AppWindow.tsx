@@ -1,40 +1,8 @@
 import React from "react";
 import { Rnd } from "react-rnd";
-import { minMarginX, minMarginY, appBarHeight } from "~/utils";
+import { minMarginX, minMarginY, appBarHeight, panelHeight } from "~/utils";
 
-const FullIcon = ({ size }: { size: number }) => (
-  <svg
-    className="icon"
-    viewBox="0 0 13 13"
-    width={size}
-    height={size}
-    xmlns="http://www.w3.org/2000/svg"
-    fillRule="evenodd"
-    clipRule="evenodd"
-    strokeLinejoin="round"
-    strokeMiterlimit={2}
-  >
-    <path d="M9.26 12.03L.006 2.73v9.3H9.26zM2.735.012l9.3 9.3v-9.3h-9.3z" />
-  </svg>
-);
-
-const ExitFullIcon = ({ size }: { size: number }) => (
-  <svg
-    className="icon"
-    viewBox="0 0 19 19"
-    width={size}
-    height={size}
-    xmlns="http://www.w3.org/2000/svg"
-    fillRule="evenodd"
-    clipRule="evenodd"
-    strokeLinejoin="round"
-    strokeMiterlimit={2}
-  >
-    <path d="M18.373 9.23L9.75.606V9.23h8.624zM.6 9.742l8.623 8.624V9.742H.599z" />
-  </svg>
-);
-
-interface TrafficProps {
+interface ButtonsProps {
   id: string;
   max: boolean;
   aspectRatio?: number;
@@ -43,9 +11,11 @@ interface TrafficProps {
   close: (id: string) => void;
 }
 
-interface WindowProps extends TrafficProps {
+interface WindowProps extends ButtonsProps {
   title: string;
+  img: string;
   min: boolean;
+  active: boolean;
   width?: number;
   height?: number;
   minWidth?: number;
@@ -64,76 +34,84 @@ interface WindowState {
   y: number;
 }
 
-const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficProps) => {
+// Breeze-like window buttons, on the right as in KDE Plasma
+const WindowButtons = ({ id, close, aspectRatio, max, setMax, setMin }: ButtonsProps) => {
   const disableMax = aspectRatio !== undefined;
 
-  const closeWindow = (e: React.MouseEvent | React.TouchEvent): void => {
-    e.stopPropagation();
-    close(id);
-  };
+  const stop = (e: React.SyntheticEvent) => e.stopPropagation();
 
   return (
-    <div className="traffic-lights flex flex-row absolute left-0 space-x-2 pl-2 mt-1.5">
+    <div className="hstack gap-1 pr-1.5" onDoubleClick={stop} onMouseDown={stop}>
       <button
-        className="window-btn bg-red-500 dark:bg-red-400"
-        onClick={closeWindow}
-        onTouchEnd={closeWindow}
-      >
-        <span className="icon i-gg:close text-[9px]" />
-      </button>
-      <button
-        className={`window-btn ${max ? "bg-c-400" : "bg-yellow-500 dark:bg-yellow-400"}`}
+        type="button"
+        className="kwin-btn"
+        aria-label="Minimize"
+        title="Minimize"
         onClick={() => setMin(id)}
-        onTouchEnd={() => setMin(id)}
         disabled={max}
       >
-        <span className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`} />
+        <span className="i-mdi:chevron-down text-lg" />
       </button>
+      {!disableMax && (
+        <button
+          type="button"
+          className="kwin-btn"
+          aria-label={max ? "Restore" : "Maximize"}
+          title={max ? "Restore" : "Maximize"}
+          onClick={() => setMax(id)}
+        >
+          <span
+            className={`${max ? "i-mdi:rhombus-outline" : "i-mdi:chevron-up"} text-lg`}
+          />
+        </button>
+      )}
       <button
-        className={`window-btn ${
-          disableMax ? "bg-c-400" : "bg-green-500 dark:bg-green-400"
-        }`}
-        onClick={() => setMax(id)}
-        onTouchEnd={() => setMax(id)}
-        disabled={disableMax}
+        type="button"
+        className="kwin-btn kwin-close"
+        aria-label="Close"
+        title="Close"
+        onClick={(e) => {
+          e.stopPropagation();
+          close(id);
+        }}
       >
-        {!disableMax && (max ? <ExitFullIcon size={9} /> : <FullIcon size={6} />)}
+        <span className="i-mdi:close text-base" />
       </button>
     </div>
   );
 };
 
 const Window = (props: WindowProps) => {
-  const dockSize = useStore((state) => state.dockSize);
   const { winWidth, winHeight } = useWindowSize();
+  const usableHeight = winHeight - panelHeight;
 
   const initWidth = Math.min(winWidth, props.width || 640);
-  const initHeight = Math.min(winHeight, props.height || 400);
+  const initHeight = Math.min(usableHeight, props.height || 400);
 
   const [state, setState] = useState<WindowState>({
     width: initWidth,
     height: initHeight,
     // "+ winWidth" because of the boundary for windows
     x: winWidth + (winWidth - initWidth) / 2 + (props.x || 0),
-    // "- minMarginY" because of the boundary for windows
-    y: (winHeight - initHeight - dockSize - minMarginY) / 2 + (props.y || 0)
+    y: Math.max(0, (usableHeight - initHeight) / 2 + (props.y || 0))
   });
 
   useEffect(() => {
     setState({
       ...state,
       width: Math.min(winWidth, state.width),
-      height: Math.min(winHeight, state.height)
+      height: Math.min(usableHeight, state.height)
     });
   }, [winWidth, winHeight]);
 
-  const round = props.max ? "rounded-none" : "rounded-lg";
   const minimized = props.min
     ? "opacity-0 invisible transition-opacity duration-300"
     : "";
-  const border = props.max ? "" : "border border-gray-500/30";
+  const frame = props.max
+    ? "rounded-none"
+    : "rounded-md border border-black/60 outline outline-1 outline-white/8";
   const width = props.max ? winWidth : state.width;
-  const height = props.max ? winHeight : state.height;
+  const height = props.max ? usableHeight : state.height;
   const disableMax = props.aspectRatio !== undefined;
 
   const children = React.cloneElement(props.children as React.ReactElement, {
@@ -160,12 +138,8 @@ const Window = (props: WindowProps) => {
               )
             ),
         y: props.max
-          ? -minMarginY // because of boundary
-          : Math.min(
-              // "- minMarginY" because of the boundary for windows
-              winHeight - minMarginY - (dockSize + 15 + minMarginY),
-              Math.max(0, state.y)
-            )
+          ? -minMarginY
+          : Math.min(usableHeight - appBarHeight, Math.max(0, state.y))
       }}
       onDragStop={(e, d) => {
         setState({ ...state, x: d.x, y: d.y });
@@ -187,14 +161,26 @@ const Window = (props: WindowProps) => {
       lockAspectRatioExtraHeight={props.aspectRatio ? appBarHeight : undefined}
       style={{ zIndex: props.z }}
       onMouseDown={() => props.focus(props.id)}
-      className={`overflow-hidden ${round} ${border} shadow-lg shadow-black/30 ${minimized}`}
+      className={`overflow-hidden font-kali bg-kali-card shadow-[0_12px_40px_rgba(0,0,0,0.55)] ${frame} ${minimized}`}
       id={`window-${props.id}`}
     >
       <div
-        className="window-bar relative h-6 text-center bg-c-200"
+        className={`window-bar relative h-8 hstack select-none border-b border-black/40 transition-colors ${
+          props.active ? "bg-[#262a33] text-kali-text" : "bg-kali-card text-kali-muted"
+        }`}
         onDoubleClick={() => !disableMax && props.setMax(props.id)}
       >
-        <TrafficLights
+        <img
+          className={`size-4 ml-2.5 ${props.active ? "" : "opacity-60"}`}
+          src={props.img}
+          alt=""
+          draggable={false}
+        />
+        <span className="absolute inset-x-28 text-center text-[13px] truncate pointer-events-none">
+          {props.title}
+        </span>
+        <div className="flex-1" />
+        <WindowButtons
           id={props.id}
           max={props.max}
           aspectRatio={props.aspectRatio}
@@ -202,7 +188,6 @@ const Window = (props: WindowProps) => {
           setMin={props.setMin}
           close={props.close}
         />
-        <span className="font-semibold text-c-700">{props.title}</span>
       </div>
       <div className="innner-window w-full overflow-y-hidden">{children}</div>
     </Rnd>
