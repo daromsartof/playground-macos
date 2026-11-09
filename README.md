@@ -1,17 +1,36 @@
-# playground-macos
+# portfolio-kali
 
-Portfolio of **Romeo Ericka Razakandriarimanana** (Backend & AI Developer), simulating macOS's GUI.
+Interactive portfolio of **Romeo Ericka Razakandriarimanana** (Backend & AI Developer), styled as **Kali Linux** running the **KDE Plasma** desktop.
 
-- Website: [daromsart.xyz](https://daromsart.xyz/)
-- GitHub: [@daromsartof](https://github.com/daromsartof)
-- LinkedIn: [daroms](https://www.linkedin.com/in/daroms/)
-
-Forked from [Renovamen/playground-macos](https://github.com/Renovamen/playground-macos).
+- 🌐 Live: [portfolio.daromsart.xyz](https://portfolio.daromsart.xyz/)
+- 🏢 Agency: [daromsart.xyz](https://daromsart.xyz/)
+- 🐙 GitHub: [@daromsartof](https://github.com/daromsartof)
+- 💼 LinkedIn: [daroms](https://www.linkedin.com/in/daroms/)
 
 Powered by [React](https://reactjs.org/) + [Zustand](https://zustand-demo.pmnd.rs/) + [UnoCSS](https://uno.antfu.me/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/).
 
-![light mode](./public/screenshots/light.png)
-![dark mode](./public/screenshots/dark.png)
+Forked from [Renovamen/playground-macos](https://github.com/Renovamen/playground-macos) and reskinned from macOS to Kali Linux / KDE Plasma.
+
+![Kali Linux KDE Plasma desktop](./public/screenshots/kali-desktop.jpg)
+
+
+&nbsp;
+
+## Features
+
+- **LightDM-style login** screen with the Kali dragon, power menu and live clock.
+- **GRUB menu → Plymouth splash** boot sequence.
+- **KDE Plasma panel** (bottom): Kickoff application launcher, icons-only task
+  manager, and a system tray — clipboard, notifications, audio, network,
+  battery, and a digital clock with a calendar popup.
+- **KRunner** quick search — press `Alt`+`Space` (or `Alt`+`F2`).
+- **KWin / Breeze** dark window decorations, with the buttons on the right.
+- Apps reskinned to their KDE / Kali counterparts:
+  - **Dolphin** — file manager holding my profile, résumé and projects
+  - **Konsole** — terminal with Kali's zsh prompt
+  - **Firefox ESR** — browser with my links
+  - **Kate** — markdown editor
+  - **Visual Studio Code** · **Kamoso** (camera)
 
 
 &nbsp;
@@ -39,31 +58,15 @@ pnpm build
 
 &nbsp;
 
-## Changelog
-
-- **Update 2023.06.26**: Improve [FaceTime](https://support.apple.com/en-us/HT208176).
-
-- **Update 2023.06.25**: Add [Typora](https://typora.io/), built on top of [Milkdown](https://milkdown.dev/).
-
-- **Update 2021.12.05**: Simulated the device's actual battery state using [Battery API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API), displaying 100% charge on [unsupported browsers](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API#browser_compatibility).
-
-- **Update 2021.12.05**: Refactored for cleaner code by utilizing functional components and hooks. Refer to [this branch](https://github.com/Renovamen/playground-macos/tree/class-component) for the previous version implemented with class components.
-
-
-&nbsp;
-
 ## Credits
 
-- macOS
-  - [Monterey](https://www.apple.com/macos/monterey/)
-  - [Catalina](https://www.apple.com/bw/macos/catalina/)
-- [macOS Icon Gallery](https://www.macosicongallery.com/)
-- [sindresorhus/file-icon-cli](https://github.com/sindresorhus/file-icon-cli)
-- [vivek9patel.github.io](https://github.com/vivek9patel/vivek9patel.github.io)
+- [Kali Linux](https://www.kali.org/) and the [KDE Plasma](https://kde.org/plasma-desktop/) desktop (design inspiration)
+- Original macOS version: [Renovamen/playground-macos](https://github.com/Renovamen/playground-macos)
+- UI icons from [Iconify](https://iconify.design/) (Material Design Icons & Simple Icons)
 
 
 &nbsp;
 
 ## License
 
-[MIT](MIT)
+[MIT](LICENSE)
