@@ -10,8 +10,15 @@ const bear: BearData[] = [
         id: "about-me",
         title: "About Me",
         file: "markdown/about-me.md",
-        icon: "i-la:dragon",
-        excerpt: "Hey there! I'm a dragon lost in human world..."
+        icon: "i-ri:user-smile-line",
+        excerpt: "Hey there! I'm a backend & AI developer from Madagascar..."
+      },
+      {
+        id: "resume",
+        title: "Résumé",
+        file: "markdown/resume.md",
+        icon: "i-ri:file-user-line",
+        excerpt: "Experience, skills, education and certifications..."
       },
       {
         id: "github-stats",
@@ -35,124 +42,79 @@ const bear: BearData[] = [
     icon: "i-octicon:repo",
     md: [
       {
-        id: "flint",
-        title: "Flint",
-        file: "https://raw.githubusercontent.com/Renovamen/flint/main/README.md",
-        icon: "i-heroicons-solid:fire",
-        excerpt: "A deep learning framework implemented in Numpy...",
-        link: "https://github.com/Renovamen/flint"
+        id: "daroms-speedapp",
+        title: "Daroms Speed App",
+        file: "https://raw.githubusercontent.com/daromsartof/daroms-speedapp/main/README.md",
+        icon: "i-bi:lightning-charge-fill",
+        excerpt: "Expo + Tamagui + Supabase mobile framework built for Claude Code...",
+        link: "https://daromsartof.github.io/daroms-speedapp/"
       },
       {
-        id: "portfolio-macos",
-        title: "Portfolio macOS",
-        file: "https://raw.githubusercontent.com/Renovamen/playground-macos/main/README.md",
-        icon: "i-ri:gamepad-line",
-        excerpt: "My portfolio website simulating macOS's GUI...",
-        link: "https://github.com/Renovamen/playground-macos"
+        id: "expo-pin",
+        title: "expo-pin",
+        file: "https://raw.githubusercontent.com/daromsartof/expo-pin/main/README.md",
+        icon: "i-ri:pushpin-2-fill",
+        excerpt: "Stop Expo Go auto-updates from forcing Expo SDK upgrades...",
+        link: "https://www.npmjs.com/package/expo-pin"
       },
       {
-        id: "oh-my-cv",
-        title: "Oh, My CV!",
-        file: "https://raw.githubusercontent.com/Renovamen/oh-my-cv/main/README.md",
-        icon: "i-ri:newspaper-fill",
-        excerpt: "Write your curriculum vitae / resume in Markdown online...",
-        link: "https://ohmycv.app"
+        id: "palmer-immo",
+        title: "Palmer-immo",
+        file: "markdown/projects/palmer-immo.md",
+        icon: "i-ri:home-4-line",
+        excerpt: "Scraping services and RAG agents for a Swiss real estate SaaS...",
+        link: "https://www.palmer-immo.ch/"
       },
       {
-        id: "oh-vue-icons",
-        title: "Oh, Vue Icons!",
-        file: "https://raw.githubusercontent.com/Renovamen/oh-vue-icons/master/README.md",
-        icon: "i-fa-brands:vuejs",
-        excerpt: "Importing icons from different icon packs in Vue easily...",
-        link: "https://oh-vue-icons.js.org"
+        id: "compta-sympa",
+        title: "Compta Sympa",
+        file: "markdown/projects/compta-sympa.md",
+        icon: "i-ri:bill-line",
+        excerpt: "OCR + LLM document classification at 90% accuracy...",
+        link: "https://compta-sympa.com/"
       },
       {
-        id: "gungnir",
-        title: "Gungnir",
-        file: "https://raw.githubusercontent.com/Renovamen/vuepress-theme-gungnir/main/README.md",
-        icon: "i-akar-icons:sword",
-        excerpt: "A simple and beautiful blog theme for VuePress...",
-        link: "https://vuepress-theme-gungnir.vercel.app"
+        id: "pure-budget",
+        title: "Pure Budget",
+        file: "markdown/projects/pure-budget.md",
+        icon: "i-ri:wallet-3-line",
+        excerpt: "AI budget app with voice logging and receipt scanning..."
       },
       {
-        id: "metallic",
-        title: "Metallic",
-        file: "https://raw.githubusercontent.com/Renovamen/metallic/master/README.md",
-        icon: "i-icon-park-outline:heavy-metal",
-        excerpt: "A meta-learning library base on PyTorch...",
-        link: "https://github.com/Renovamen/metallic"
+        id: "aimkit",
+        title: "AimKit",
+        file: "markdown/projects/aimkit.md",
+        icon: "i-ri:focus-3-line",
+        excerpt: "Point at any element on your page and send it to Claude Code..."
       },
       {
-        id: "text-classification",
-        title: "Text Classification",
-        file: "https://raw.githubusercontent.com/Renovamen/Text-Classification/master/README.md",
-        icon: "i-gg:format-text",
-        excerpt: "PyTorch implementation of text classificaiton models...",
-        link: "https://github.com/Renovamen/Text-Classification"
+        id: "wawap",
+        title: "Wawap",
+        file: "markdown/projects/wawap.md",
+        icon: "i-ri:whatsapp-line",
+        excerpt: "Chrome extension that drafts WhatsApp Web replies with AI..."
       },
       {
-        id: "speech-emotion-recognition",
-        title: "Speech Emotion",
-        file: "https://raw.githubusercontent.com/Renovamen/Speech-Emotion-Recognition/master/README.md",
-        icon: "i-ant-design:audio-filled",
-        excerpt: "Speech emotion recognition using Keras and sklearn...",
-        link: "https://github.com/Renovamen/Speech-Emotion-Recognition"
+        id: "funface",
+        title: "FunFace",
+        file: "markdown/projects/funface.md",
+        icon: "i-ri:emotion-laugh-line",
+        excerpt: "Facial recognition pipeline and React Native app..."
       },
       {
-        id: "pcalg-py",
-        title: "PC Algorithm",
-        file: "https://raw.githubusercontent.com/Renovamen/pcalg-py/master/README.md",
-        icon: "i-tabler:atom-2",
-        excerpt: "Implement PC algorithm in Python...",
-        link: "https://github.com/Renovamen/pcalg-py"
+        id: "databonita",
+        title: "Databonita",
+        file: "markdown/projects/databonita.md",
+        icon: "i-ri:dashboard-3-line",
+        excerpt: "Real-time KPI dashboards for iOS and Android..."
       },
       {
-        id: "midgard",
-        title: "Midgard",
-        file: "https://raw.githubusercontent.com/Renovamen/midgard/master/README.md",
-        icon: "i-bx:game",
-        excerpt: "An interactive version of my resume, powered by Vue...",
-        link: "https://resume.zxh.io/"
-      },
-      {
-        id: "image-captioning",
-        title: "Image Captioning",
-        file: "https://raw.githubusercontent.com/Renovamen/Image-Captioning/master/README.md",
-        icon: "i-bi:image-fill",
-        excerpt: "PyTorch implementation of image captioning models...",
-        link: "https://github.com/Renovamen/Image-Captioning"
-      },
-      {
-        id: "wordle-helper",
-        title: "Wordle Helper",
-        file: "https://raw.githubusercontent.com/Renovamen/wordle-helper/main/README.md",
-        icon: "i-bi:grid-1x2",
-        excerpt: "Help you solve Wordle puzzles...",
-        link: "https://wordle.zxh.io"
-      },
-      {
-        id: "cube-solver",
-        title: "Cube Solver",
-        file: "https://raw.githubusercontent.com/Renovamen/Just-a-Cube/master/README.md",
-        icon: "i-bx:cube",
-        excerpt: "A rubik's cube solver (layer-by-layer & two-phase)...",
-        link: "https://cube.zxh.io"
-      },
-      {
-        id: "alkaid",
-        title: "Alkaid",
-        file: "https://raw.githubusercontent.com/Renovamen/alkaid/main/README.md",
-        icon: "i-simple-icons:stellar",
-        excerpt: "Minimal reinforcement-learning toolbox for PyTorch...",
-        link: "https://github.com/Renovamen/alkaid"
-      },
-      {
-        id: "fishmail",
-        title: "Fishmail",
-        file: "https://raw.githubusercontent.com/Renovamen/Fishmail/master/README.md",
-        icon: "i-game-icons:fish-escape",
-        excerpt: "上班的时候装作在 Gmail 上查邮件的样子看知乎摸鱼...",
-        link: "https://fishmail.vercel.app"
+        id: "smart-scrapping",
+        title: "Smart Scraping",
+        file: "https://raw.githubusercontent.com/daromsartof/smart-scrapping/main/README.md",
+        icon: "i-ri:robot-2-line",
+        excerpt: "LLM-powered web scraping agent system with Docker...",
+        link: "https://github.com/daromsartof/smart-scrapping"
       }
     ]
   }

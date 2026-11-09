@@ -1,6 +1,12 @@
 # playground-macos
 
-My portfolio website simulating macOS's GUI: https://portfolio.zxh.me
+Portfolio of **Romeo Ericka Razakandriarimanana** (Backend & AI Developer), simulating macOS's GUI.
+
+- Website: [daromsart.xyz](https://daromsart.xyz/)
+- GitHub: [@daromsartof](https://github.com/daromsartof)
+- LinkedIn: [daroms](https://www.linkedin.com/in/daroms/)
+
+Forked from [Renovamen/playground-macos](https://github.com/Renovamen/playground-macos).
 
 Powered by [React](https://reactjs.org/) + [Zustand](https://zustand-demo.pmnd.rs/) + [UnoCSS](https://uno.antfu.me/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/).
 

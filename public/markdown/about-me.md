@@ -2,31 +2,37 @@
 
 ## Biography
 
-Hey there! I am a PhD student at the [Computer Science and Engineering](https://www.eecs.psu.edu/) department of [Pennsylvania State University](https://www.psu.edu/). Previously, I received my master's degree in [Computer Science](https://www.bu.edu/cs/) from [Boston University](https://www.bu.edu/) and my bachelor’s degree in [Software Engineering](http://sse.tongji.edu.cn/) from [Tongji University](https://www.tongji.edu.cn/).
+Hey there! I'm **Romeo Ericka Razakandriarimanana**, a backend & AI developer based in Antananarivo, Madagascar.
 
-I'm trying to find a balance between research and engineering.
+I have 3+ years of professional experience building Python services and LLM-powered products. I shipped an OCR + LLM document classification system at 90% accuracy and extraction pipelines handling 1,200+ documents per hour. I work with RAG agents ([LangChain](https://www.langchain.com/), [LangGraph](https://www.langchain.com/langgraph)), [FastAPI](https://fastapi.tiangolo.com/), Docker and cloud deployment.
 
-My current research interests primarily focus on understanding and enhancing the continuity, generalizability, efficiency, and other key properties of machine learning. I am also interested in large multimodal models.
+I'm also the founder of [Daroms'Art](https://daromsart.xyz/), a web, mobile and AI development agency started in 2021 in Antananarivo. We work with founders, SMEs and product teams in Europe, North America and Africa, and ship projects in two-week cycles.
 
-I'm also learning web development and building machine learning software and systems.
+I work in English and French with remote teams and international clients.
+
+
+## What I Do
+
+- **Backend:** Python, FastAPI, Node.js, Symfony, REST APIs, microservices
+- **AI / ML:** LLMs (Gemini, Ollama, OpenAI, Claude), RAG, LangChain, LangGraph, OCR (Tesseract, EasyOCR), OpenCV
+- **Mobile & Web:** React, Next.js, React Native, Expo
+- **Data:** PostgreSQL, MySQL, MongoDB, Firestore, ChromaDB, FAISS
+- **Cloud & DevOps:** Docker, Google Cloud, Firebase, AWS, CI/CD, Linux
 
 
 ## Contact
 
 Contact me by:
 
-- Email: [renovamenzxh@gmail.com](mailto:renovamenzxh@gmail.com)
-- Github: [@Renovamen](https://github.com/Renovamen)
-- [Google Scholar](https://scholar.google.com/citations?user=RuW6xgMAAAAJ)
-- Linkedin: [xiaohan-zou](https://www.linkedin.com/in/xiaohan-zou)
-- 知乎: [@西伯利亚大恶龙](https://www.zhihu.com/people/chao-neng-gui-su)
-- Personal Website: [zxh.me](https://zxh.me)
+- Email: [romeoerika.razaka@gmail.com](mailto:romeoerika.razaka@gmail.com) / [romeo@daromsart.xyz](mailto:romeo@daromsart.xyz)
+- Phone: +261 34 72 863 14
+- Github: [@daromsartof](https://github.com/daromsartof)
+- Linkedin: [daroms](https://www.linkedin.com/in/daroms/)
+- X: [@Romeo_Eticka](https://x.com/Romeo_Eticka)
+- Website: [daromsart.xyz](https://daromsart.xyz/)
 
 
 ## Résumé
 
-- Normal version: [English](https://zxh.me/files/cv/en.pdf) / [中文](https://zxh.me/files/cv/cn.pdf)
-
-  中文版的更新很可能不及时
-
-- Interesting version: [portfolio.zxh.me](https://portfolio.zxh.me) / [resume.zxh.io](https://resume.zxh.io)
+- See the **Résumé** note in this app for my full experience, education and certifications.
+- Online portfolio: [romeo-ericka.vercel.app](https://romeo-ericka.vercel.app/)

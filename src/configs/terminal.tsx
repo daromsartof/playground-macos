@@ -13,8 +13,10 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi, this is Xiaohan Zou. I am a PhD student at the Computer Science and
-              Engineering department of Pennsylvania State University.
+              Hi, this is Romeo Ericka Razakandriarimanana. I am a backend & AI developer
+              based in Antananarivo, Madagascar, with 3+ years of experience building
+              Python services and LLM-powered products. I also run Daroms&apos;Art, a web,
+              mobile and AI development agency.
             </div>
           </div>
         )
@@ -23,14 +25,14 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "Machine Learning / Computer Vision / Multimodal Learning"
+        content: "Backend / LLM & RAG Agents / OCR & Document AI / Mobile Apps"
       },
       {
         id: "about-who-cares",
         title: "who-cares.txt",
         type: "file",
         content:
-          "I'm looking for a research internship for Summer 2024. I'm open to collaboration on research projects."
+          "I'm open to freelance missions and remote backend & AI roles. I work in English and French with teams across time zones."
       },
       {
         id: "about-contact",
@@ -42,65 +44,55 @@ const terminal: TerminalData[] = [
               Email:{" "}
               <a
                 className="text-blue-300"
-                href="mailto:renovamenzxh@gmail.com"
+                href="mailto:romeoerika.razaka@gmail.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                renovamenzxh@gmail.com
+                romeoerika.razaka@gmail.com
               </a>
             </li>
             <li>
               Github:{" "}
               <a
                 className="text-blue-300"
-                href="https://github.com/Renovamen"
+                href="https://github.com/daromsartof"
                 target="_blank"
                 rel="noreferrer"
               >
-                @Renovamen
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-blue-300"
-                href="https://scholar.google.com/citations?user=RuW6xgMAAAAJ"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Google Scholar
+                @daromsartof
               </a>
             </li>
             <li>
               Linkedin:{" "}
               <a
                 className="text-blue-300"
-                href="https://www.linkedin.com/in/xiaohan-zou"
+                href="https://www.linkedin.com/in/daroms/"
                 target="_blank"
                 rel="noreferrer"
               >
-                xiaohan-zou
+                daroms
               </a>
             </li>
             <li>
-              Personal Website:{" "}
+              X:{" "}
               <a
                 className="text-blue-300"
-                href="https://zxh.me"
+                href="https://x.com/Romeo_Eticka"
                 target="_blank"
                 rel="noreferrer"
               >
-                https://zxh.me
+                @Romeo_Eticka
               </a>
             </li>
             <li>
-              知乎:{" "}
+              Website:{" "}
               <a
                 className="text-blue-300"
-                href="https://www.zhihu.com/people/chao-neng-gui-su"
+                href="https://daromsart.xyz/"
                 target="_blank"
                 rel="noreferrer"
               >
-                @西伯利亚大恶龙
+                https://daromsart.xyz
               </a>
             </li>
           </ul>

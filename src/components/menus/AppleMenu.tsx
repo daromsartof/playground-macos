@@ -1,4 +1,5 @@
 import React from "react";
+import { user } from "~/configs";
 
 interface AppleMenuProps {
   logout: () => void;
@@ -43,7 +44,7 @@ export default function AppleMenu({
       </MenuItemGroup>
       <MenuItemGroup border={false}>
         <MenuItem onClick={logout}>Lock Screen</MenuItem>
-        <MenuItem onClick={logout}>Log Out Xiaohan Zou...</MenuItem>
+        <MenuItem onClick={logout}>Log Out {user.name}...</MenuItem>
       </MenuItemGroup>
     </div>
   );

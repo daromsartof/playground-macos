@@ -5,47 +5,41 @@ const websites: WebsitesData = {
     title: "SNS Links",
     sites: [
       {
-        id: "my-blog",
-        title: "Website",
-        img: "https://zxh.me/img/avatar.jpg",
-        link: "https://zxh.me/",
+        id: "my-website",
+        title: "Daroms'Art",
+        img: "img/ui/avatar.jpg",
+        link: "https://daromsart.xyz/"
+      },
+      {
+        id: "my-portfolio",
+        title: "Portfolio",
+        img: "img/ui/avatar.jpg",
+        link: "https://romeo-ericka.vercel.app/",
         inner: true
       },
       {
         id: "my-github",
         title: "Github",
         img: "img/sites/github.svg",
-        link: "https://github.com/Renovamen"
+        link: "https://github.com/daromsartof"
       },
       {
         id: "my-linkedin",
         title: "Linkedin",
         img: "img/sites/linkedin.svg",
-        link: "https://www.linkedin.com/in/xiaohan-zou"
-      },
-      {
-        id: "my-google-scholar",
-        title: "Scholar",
-        img: "img/sites/google-scholar.svg",
-        link: "https://scholar.google.com/citations?user=RuW6xgMAAAAJ"
-      },
-      {
-        id: "my-zhihu",
-        title: "知乎",
-        img: "img/sites/zhihu.jpeg",
-        link: "https://www.zhihu.com/people/chao-neng-gui-su"
+        link: "https://www.linkedin.com/in/daroms/"
       },
       {
         id: "my-twitter",
-        title: "Twitter",
+        title: "X",
         img: "img/sites/twitter.svg",
-        link: "https://www.twitter.com/renovamen_zxh"
+        link: "https://x.com/Romeo_Eticka"
       },
       {
         id: "my-email",
         title: "Email",
         img: "img/sites/gmail.svg",
-        link: "mailto:renovamenzxh@gmail.com"
+        link: "mailto:romeoerika.razaka@gmail.com"
       }
     ]
   },
@@ -59,52 +53,78 @@ const websites: WebsitesData = {
         link: "https://github.com/"
       },
       {
+        id: "huggingface",
+        title: "Hugging Face",
+        img: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+        link: "https://huggingface.co/"
+      },
+      {
+        id: "claude",
+        title: "Claude",
+        img: "https://claude.ai/apple-touch-icon.png",
+        link: "https://claude.ai/"
+      },
+      {
+        id: "stackoverflow",
+        title: "Stack Overflow",
+        img: "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png",
+        link: "https://stackoverflow.com/"
+      },
+      {
+        id: "fastapi",
+        title: "FastAPI",
+        img: "https://fastapi.tiangolo.com/img/favicon.png",
+        link: "https://fastapi.tiangolo.com/"
+      },
+      {
+        id: "langchain",
+        title: "LangChain",
+        link: "https://python.langchain.com/"
+      },
+      {
+        id: "docker-hub",
+        title: "Docker Hub",
+        img: "https://www.docker.com/app/uploads/2024/02/cropped-docker-logo-favicon-192x192.png",
+        link: "https://hub.docker.com/"
+      },
+      {
+        id: "expo",
+        title: "Expo",
+        link: "https://expo.dev/"
+      },
+      {
+        id: "npm",
+        title: "npm",
+        link: "https://www.npmjs.com/"
+      },
+      {
+        id: "kaggle",
+        title: "Kaggle",
+        img: "https://www.kaggle.com/static/images/favicon.ico",
+        link: "https://www.kaggle.com/"
+      },
+      {
         id: "arxiv",
         title: "arXiv",
         img: "img/sites/arxiv.png",
         link: "https://arxiv.org/"
       },
       {
-        id: "twitter",
-        title: "Twitter",
-        img: "img/sites/twitter.svg",
-        link: "https://www.twitter.com/"
+        id: "leetcode",
+        title: "LeetCode",
+        img: "img/sites/leetcode.svg",
+        link: "https://leetcode.com/"
+      },
+      {
+        id: "fiverr",
+        title: "Fiverr",
+        link: "https://www.fiverr.com/"
       },
       {
         id: "dribbble",
         title: "Dribbble",
         img: "img/sites/dribbble.svg",
         link: "https://dribbble.com/"
-      },
-      {
-        id: "pinterest",
-        title: "Pinterest",
-        img: "img/sites/pinterest.svg",
-        link: "https://www.pinterest.com/"
-      },
-      {
-        id: "art-station",
-        title: "ArtStation",
-        img: "img/sites/artstation.svg",
-        link: "https://www.artstation.com//"
-      },
-      {
-        id: "bilibili",
-        title: "Bilibili",
-        img: "img/sites/bilibili.svg",
-        link: "https://www.bilibili.com/"
-      },
-      {
-        id: "zhihu",
-        title: "知乎",
-        img: "img/sites/zhihu.jpeg",
-        link: "https://www.zhihu.com/"
-      },
-      {
-        id: "leetcode",
-        title: "LeetCode",
-        img: "img/sites/leetcode.svg",
-        link: "https://leetcode.com/"
       },
       {
         id: "reddit",
@@ -117,36 +137,6 @@ const websites: WebsitesData = {
         title: "Hacker News",
         img: "img/sites/hacker.svg",
         link: "https://news.ycombinator.com/"
-      },
-      {
-        id: "v2ex",
-        title: "V2EX",
-        img: "https://www.v2ex.com/apple-touch-icon.png",
-        link: "https://www.v2ex.com/"
-      },
-      {
-        id: "aideadline",
-        title: "AI Deadlines",
-        img: "https://aideadlin.es/static/img/favicon.png",
-        link: "https://aideadlin.es/",
-        inner: true
-      },
-      {
-        id: "oh-my-cv",
-        title: "OhMyCV",
-        img: "https://ohmycv.app/apple-touch-icon.png",
-        link: "https://ohmycv.app/"
-      },
-      {
-        id: "steam",
-        title: "Steam",
-        img: "img/sites/steam.svg",
-        link: "https://store.steampowered.com/"
-      },
-      {
-        id: "nazo",
-        title: "Nazo",
-        link: "https://nazo.one-story.cn"
       },
       {
         id: "svgomg",

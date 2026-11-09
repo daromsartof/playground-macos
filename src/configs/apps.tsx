@@ -12,8 +12,8 @@ const apps: AppsData[] = [
     id: "bear",
     title: "Bear",
     desktop: true,
-    width: 860,
-    height: 500,
+    width: 1100,
+    height: 680,
     show: true,
     y: -40,
     img: "img/icons/bear.png",
@@ -77,7 +77,7 @@ const apps: AppsData[] = [
     title: "Github",
     desktop: false,
     img: "img/icons/github.png",
-    link: "https://github.com/Renovamen/playground-macos"
+    link: "https://github.com/daromsartof"
   }
 ];
 
