@@ -216,8 +216,17 @@ export default function Login(props: MacActions) {
         </form>
       </main>
 
-      <footer className="absolute bottom-4 inset-x-0 text-center font-kali-mono text-[11px] text-white/50">
-        Kali GNU/Linux Rolling · {user.hostname} tty7
+      <footer className="absolute bottom-4 inset-x-0 vstack gap-1 text-center font-kali-mono text-[11px] text-white/50">
+        <p>Kali GNU/Linux Rolling · {user.hostname} tty7</p>
+        <p>
+          Web, mobile &amp; AI development:{" "}
+          <a
+            href="https://daromsart.xyz/"
+            className="select-text underline underline-offset-2 hover:text-white"
+          >
+            Daroms'Art
+          </a>
+        </p>
       </footer>
     </div>
   );
